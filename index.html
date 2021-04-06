@@ -1,10 +1,58 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>这是个标题</title>
-    </head>
-    <body>
-        <h1>这是一个一个简单的HTML</h1>
-        <p>Hello World！</p>
-    </body>
+	<head>
+		<meta charset="utf-8" />
+		<script src="../js/vue.js" type="text/javascript" charset="utf-8"></script>
+		<title></title>
+	</head>
+	<body>
+		
+		<div id="app">
+			请输入查询的国家代码：
+			<input type="text" v-model="Info" />
+			<input type="button" value="查询" @click="select" />
+			<p>{{msg}}</p>
+		</div>
+		
+		
+		
+		<script type="text/javascript">
+			let v=new Vue({
+				el:'#app',
+				data(){
+					return{
+						country:[
+								{
+										cnum:1,
+										cname:"美国"
+								},
+								{
+										cnum:33,
+										cname:"法国"
+								},
+								{
+										cnum:86,
+										cname:"中国"
+								},
+							],
+							Info:'',
+							msg: ''
+						}
+					
+				},
+				methods:{
+					select(){
+						for(let i = 0; i < this.country.length; i++) {
+							if(this.Info == this.country[i].cnum){
+								this.msg =this.country[i].cnum+'是'+this.country[i].cname+"的国家代码"
+								break
+							}else{
+								this.msg = '请输入正确的国家代码'
+							}
+						}
+					}
+				}
+			})
+		</script>
+	</body>
 </html>
